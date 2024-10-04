@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Productos en la categoría: {{ categoria_nombre }}</h1>
+
+<div class="row">
+    {% for producto in productos %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card h-100">
+            <a href="{% url 'tienda:producto' producto.id %}">
+                <img class="card-img-top" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+            </a>
+            <div class="card-body">
+                <h4 class="card-title">
+                    <a href="{% url 'tienda:producto' producto.id %}">{{ producto.nombre }}</a>
+                </h4>
+                <h5>S/ {{ producto.precio }}</h5>
+                <p class="card-text">Categoría: {{ producto.categoria.nombre }}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay productos en esta categoría.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
+<ul>
+    {% for categoria in categorias %}
+        <li>{{ categoria.nombre }}</li>
+    {% empty %}
+        <li>No hay categorías disponibles</li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+<ul>
+    {% for categoria in categorias %}
+        <li>{{ categoria.nombre }}</li>
+    {% empty %}
+        <li>No hay categorías disponibles</li>
+    {% endfor %}
+</ul>
+
+{% block content %}
+<h1>{{ producto.nombre }}</h1>
+<img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+<p>Precio: S/ {{ producto.precio }}</p>
+<p>Categoría: {{ producto.categoria.nombre }}</p>
+<p>{{ producto.descripcion }}</p>
+{% endblock %}
